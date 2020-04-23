@@ -7,9 +7,9 @@
 		"doc": "docs"
 	},
 	"scripts": {
-		"test": "echo \"Warning: no test specified\" && exit 1",
+		"test": "echo \"Warning: no test specified\" && exit 0",
 		"pretty": "prettier --write \"./**/*.java\"",
-		"java-clean": "rm ./src/*.class",
+		"java-clean": "rm -f ./src/*.class",
 		"java-compile": "javac ./src/*.java -d ./bin",
 		"java-run": "cd ./bin && clear && java MorraGameApp",
 		"java-dev": "npm run java-compile && npm run java-run"
