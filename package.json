@@ -1,5 +1,5 @@
 {
-	"name": "nci-sd-java-project-word-game",
+	"name": "nci-sd-java-project-words-game",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -26,15 +26,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/mdibenedetto/NCI-SD-JAVA-Project-Morra-Game.git"
+		"url": "git+https://github.com/mdibenedetto/NCI-SD-JAVA-Project-Words-Game.git"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/mdibenedetto/NCI-SD-JAVA-Project-Morra-Game/issues"
+		"url": "https://github.com/mdibenedetto/NCI-SD-JAVA-Project-Words-Game/issues"
 	},
-	"homepage": "https://github.com/mdibenedetto/NCI-SD-JAVA-Project-Morra-Game#readme",
+	"homepage": "https://github.com/mdibenedetto/NCI-SD-JAVA-Project-Words-Game#readme",
 	"devDependencies": {
 		"husky": "^4.2.3",
 		"prettier": "^1.19.1",
