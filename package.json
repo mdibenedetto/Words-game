@@ -20,7 +20,7 @@
 	"husky": {
 		"hooks": {
 			"pre-commit": "npm run pretty",
-			"pre-push": "java-clean && npm test",
+			"pre-push": "npm run java-clean && npm test",
 			"...": "..."
 		}
 	},
