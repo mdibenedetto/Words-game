@@ -1,21 +1,24 @@
 import java.util.Scanner;
 
 public class GameManager {
+    private final int MAX_LIVES = 3;
     private Scanner sc = null;
-    GameMessage message;
-    final int MAX_LIVES = 3;
+    private GameMessage message;
+    private Player player1, player2;
 
     /**
      * This constructor set all instances:
      * - 'sc' to use class Scanner to collect input from the User
      * - message to show information
      *
-     * @author  Michele Di Bendetto
+ 
      *
      */
     public GameManager() {
         sc = new Scanner(System.in);
         message = new GameMessage();
+        player1 = new Player("player-1", MAX_LIVES);
+        player2 = new Player("player-2", MAX_LIVES);
     }
 
     /**
@@ -36,24 +39,44 @@ public class GameManager {
         }
     }
 
-    /**
-     * This method runs a game,
-     * it collects all inputs from the players,
-     * it process those inputs,
-     * it updates the Game History
-     * it shows who won the round
-     *
-     * @author  Michele Di Bendetto
-     *
-     */
-    private void startGame() {}
+    private void startGame() {
+        final String EXIT_CHAR = "-";
+        String nextWord = "";
+        Game game = new Game(player1, player2);
+        Player nextPlayer = player1;
 
-    /**
-     * This method asks the user if they want to keep playings
-     *
-     * @author Raminta Kairyte
-     *
-     */
+        while (!nextWord.equals(EXIT_CHAR)) {
+            nextWord = nextWordPlayer(nextPlayer);
+
+            if (nextPlayer.equals(player1)) {
+                nextPlayer = player2;
+            } else {
+                nextPlayer = player1;
+            }
+
+            game.play();
+        }
+    }
+
+    private String nextWordPlayer(Player player) {
+        message.displayPromptNextWord(player.name);
+
+        String word = sc.next();
+        player.currentWord = word;
+
+        message.displayChosenWord(player.name, word);
+        delay();
+        return word;
+    }
+
+    private void delay() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            System.out.println(e.getStackTrace());
+        }
+    }
+
     private boolean wantStillPlay() {
         boolean stillPlay = false;
         int userResponse = 0;

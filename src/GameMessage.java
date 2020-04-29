@@ -5,7 +5,7 @@ public class GameMessage {
         "----------------------------------------------------";
 
     private String newLine() {
-        return newLine("");
+        return NEW_LINE;
     }
 
     private String newLine(String message) {
@@ -53,5 +53,26 @@ public class GameMessage {
         message += newLine("b) NO - press 2");
         message += newLine();
         Logger.prompt(message);
+    }
+
+    public void displayPromptNextWord(String playerName) {
+        String message = playerName + ": Please input the NEXT word";
+        Logger.prompt(message);
+    }
+
+    public void displayChosenWord(String playerName, String word) {
+        String message = playerName;
+        message += ": Your word choosen is << " + word + " >>";
+        message += newLine();
+        Logger.info(message);
+    }
+
+    public void displayPromptFirstWord() {
+        String message = "Please input the FIRST word";
+        Logger.prompt(message);
+    }
+
+    public void display(String message) {
+        Logger.info(message);
     }
 }
