@@ -1033,4 +1033,17 @@ public class LimitedVocabulary {
         "zookeeper",
         "zoologist"
     }; // here ends the 1D array of words
+
+    public boolean isValidWord(String word) {
+        boolean isValid = false;
+
+        for (int i = 0, len = words.length; i < len; i++) {
+            if (words[i].equalsIgnoreCase(word)) {
+                isValid = true;
+                break;
+            }
+        }
+
+        return isValid;
+    }
 }

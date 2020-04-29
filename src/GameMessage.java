@@ -55,14 +55,22 @@ public class GameMessage {
         Logger.prompt(message);
     }
 
-    public void displayPromptNextWord(String playerName) {
-        String message = playerName + ": Please input the NEXT word";
+    public void displayPromptNextWord(String playerName, char nextLetter) {
+        String message =
+            playerName +
+            ": Please input a valid English word which start with the letter << " +
+            nextLetter +
+            " >>";
         Logger.prompt(message);
     }
 
     public void displayChosenWord(String playerName, String word) {
         String message = playerName;
         message += ": Your word choosen is << " + word + " >>";
+        if (word.equals("-")) {
+            message +=
+                "You decided to skip this round. You will loose one life.";
+        }
         message += newLine();
         Logger.info(message);
     }

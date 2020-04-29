@@ -5,6 +5,9 @@ public class GameManager {
     private Scanner sc = null;
     private GameMessage message;
     private Player player1, player2;
+    private Alphabet alphabet;
+    private Game game;
+    LimitedVocabulary vocabulary;
 
     /**
      * This constructor set all instances:
@@ -17,6 +20,9 @@ public class GameManager {
     public GameManager() {
         sc = new Scanner(System.in);
         message = new GameMessage();
+        vocabulary = new LimitedVocabulary();
+        alphabet = new Alphabet();
+
         player1 = new Player("player-1", MAX_LIVES);
         player2 = new Player("player-2", MAX_LIVES);
     }
@@ -40,13 +46,22 @@ public class GameManager {
     }
 
     private void startGame() {
+        boolean keepPlay = true;
+
         final String EXIT_CHAR = "-";
         String nextWord = "";
-        Game game = new Game(player1, player2);
+        game = new Game(player1, player2);
         Player nextPlayer = player1;
+        int matchCounter = 0;
 
-        while (!nextWord.equals(EXIT_CHAR)) {
+        while (keepPlay) {
             nextWord = nextWordPlayer(nextPlayer);
+
+            if (nextWord.equals(EXIT_CHAR)) {
+                nextPlayer.numberOfLives--;
+            }
+
+            matchCounter++;
 
             if (nextPlayer.equals(player1)) {
                 nextPlayer = player2;
@@ -54,27 +69,33 @@ public class GameManager {
                 nextPlayer = player1;
             }
 
-            game.play();
+            if (matchCounter == 2) {
+                game.play();
+
+                message.display("player1.score: " + player1.score);
+                message.display("player2.score: " + player2.score);
+
+                matchCounter = 0;
+            }
         }
     }
 
     private String nextWordPlayer(Player player) {
-        message.displayPromptNextWord(player.name);
+        boolean isValid = false;
+        String word = "";
+        char nextLetter = alphabet.findRandomLetter();
 
-        String word = sc.next();
-        player.currentWord = word;
+        do {
+            message.displayPromptNextWord(player.name, nextLetter);
+            word = sc.next();
+            message.displayChosenWord(player.name, word);
+            isValid = vocabulary.isValidWord(word);
+        } while (!isValid);
 
-        message.displayChosenWord(player.name, word);
-        delay();
+        player.setWord(word);
+        Helper.delay();
+
         return word;
-    }
-
-    private void delay() {
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            System.out.println(e.getStackTrace());
-        }
     }
 
     private boolean wantStillPlay() {
