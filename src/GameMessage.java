@@ -1,46 +1,57 @@
 public class GameMessage {
     private final String NEW_LINE = "\r\n";
+    final String GAME_NAME = "Java Words Game";
+    final String SEPARATOR =
+        "----------------------------------------------------";
 
-    public void welcome() {
-        final String GAME_NAME = "Java Words Game";
-        Logger.info("Welcome to " + GAME_NAME);
+    private String newLine() {
+        return newLine("");
+    }
+
+    private String newLine(String message) {
+        return NEW_LINE + message;
+    }
+
+    private String wrapMessage(String rawMessage) {
+        String message = SEPARATOR;
+        message += newLine(rawMessage);
+        message += newLine(SEPARATOR);
+        return message;
+    }
+
+    public void displayWelcome() {
+        Logger.message(wrapMessage("Welcome to " + GAME_NAME));
     }
 
     public void displayRules() {
-        String message = "Rule to award points";
+        String message = "";
+        message += "Rule to award points";
         message +=
             newLine(
                 "The player receives the same amount " +
                 "of points as the number of duplicated vowels"
             );
         message += newLine("EX:");
+        message += newLine();
         message += newLine("“moon” – 2 points");
         message += newLine("“cheerleader” – 4 points");
         message += newLine("“answer” – 0 points");
-        Logger.info(message);
-    }
-
-    public void displayLeftLives(Player player1) {}
-
-    private String newLine(String message) {
-        return NEW_LINE + message;
-    }
-
-    public void displayWelcome() {
-        String message = "Welcome to the game";
-        Logger.info(message);
-    }
-
-    public void promptWantStillPlay() {
-        String message = "Do you want to continue the game?";
-        message += newLine("a) YES - press 1");
-        message += newLine("b) NO - press 2");
-        Logger.prompt(message);
+        Logger.message(wrapMessage(message));
     }
 
     public void displayMaxLives(int maxLives) {
-        String message = "A new game is started";
+        String message = "";
+        message += ("A new game is started");
         message += newLine("You have a total of " + maxLives + " lives");
+        Logger.message(wrapMessage(message));
+    }
+
+    public void promptWantStillPlay() {
+        String message = "";
+        message += newLine("Do you want to continue the game?");
+        message += newLine("a) YES - press 1");
+        message += newLine("b) NO - press 2");
+        message += newLine();
         Logger.prompt(message);
     }
 }
