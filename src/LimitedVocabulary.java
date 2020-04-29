@@ -670,6 +670,7 @@ public class LimitedVocabulary {
         "put",
         "quart",
         "queen",
+        "queue",
         "question",
         "quick",
         "quiet",

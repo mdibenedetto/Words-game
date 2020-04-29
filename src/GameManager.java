@@ -22,9 +22,6 @@ public class GameManager {
         message = new GameMessage();
         vocabulary = new LimitedVocabulary();
         alphabet = new Alphabet();
-
-        player1 = new Player("player-1", MAX_LIVES);
-        player2 = new Player("player-2", MAX_LIVES);
     }
 
     /**
@@ -37,10 +34,13 @@ public class GameManager {
         message.displayWelcome();
         message.displayRules();
 
+        int gameCounter = 0;
         boolean keepPlay = true;
         while (keepPlay) {
+            gameCounter++;
             message.displayMaxLives(MAX_LIVES);
             startGame();
+            message.displayEndGameSummary(gameCounter, player1, player2);
             keepPlay = wantStillPlay();
         }
     }
@@ -48,18 +48,15 @@ public class GameManager {
     private void startGame() {
         boolean keepPlay = true;
 
-        final String EXIT_CHAR = "-";
-        String nextWord = "";
+        player1 = new Player("player-1", MAX_LIVES);
+        player2 = new Player("player-2", MAX_LIVES);
         game = new Game(player1, player2);
+
         Player nextPlayer = player1;
         int matchCounter = 0;
 
         while (keepPlay) {
-            nextWord = nextWordPlayer(nextPlayer);
-
-            if (nextWord.equals(EXIT_CHAR)) {
-                nextPlayer.numberOfLives--;
-            }
+            readNextWordPlayer(nextPlayer);
 
             matchCounter++;
 
@@ -74,22 +71,30 @@ public class GameManager {
 
                 message.display("player1.score: " + player1.score);
                 message.display("player2.score: " + player2.score);
+                keepPlay = !game.isGameOver();
 
                 matchCounter = 0;
             }
         }
     }
 
-    private String nextWordPlayer(Player player) {
-        boolean isValid = false;
+    private String readNextWordPlayer(Player player) {
+        boolean isValid = false, isTurnSkipped = false;
         String word = "";
         char nextLetter = alphabet.findRandomLetter();
 
         do {
             message.displayPromptNextWord(player.name, nextLetter);
             word = sc.next();
-            message.displayChosenWord(player.name, word);
-            isValid = vocabulary.isValidWord(word);
+
+            isTurnSkipped = game.hasSkippedTurn(player);
+            message.displayChosenWord(player.name, word, isTurnSkipped);
+
+            if (isTurnSkipped) {
+                isValid = true;
+            } else {
+                isValid = vocabulary.isValidWord(word);
+            }
         } while (!isValid);
 
         player.setWord(word);

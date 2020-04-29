@@ -64,12 +64,18 @@ public class GameMessage {
         Logger.prompt(message);
     }
 
-    public void displayChosenWord(String playerName, String word) {
+    public void displayChosenWord(
+        String playerName,
+        String word,
+        boolean isTurnSkipped
+    ) {
         String message = playerName;
-        message += ": Your word choosen is << " + word + " >>";
-        if (word.equals("-")) {
+        message += ": Your choosen word is << " + word + " >>";
+        if (isTurnSkipped) {
             message +=
-                "You decided to skip this round. You will loose one life.";
+                newLine(
+                    "You decided to skip this round. You will loose one life."
+                );
         }
         message += newLine();
         Logger.info(message);
@@ -81,6 +87,31 @@ public class GameMessage {
     }
 
     public void display(String message) {
+        Logger.info(message);
+    }
+
+    public void displayEndGameSummary(
+        int gameCounter,
+        Player player1,
+        Player player2
+    ) {
+        Player winner, looser;
+
+        if (player1.numberOfLives > 0) {
+            winner = player1;
+            looser = player2;
+        } else {
+            winner = player2;
+            looser = player1;
+        }
+
+        String message = "Game number " + gameCounter;
+        message += newLine("The winner is: " + winner.name);
+        message += newLine("Total score  :" + winner.score);
+        message += newLine();
+        message += newLine("The winner is: " + looser.name);
+        message += newLine("Total score  :" + looser.score);
+        message += newLine();
         Logger.info(message);
     }
 }

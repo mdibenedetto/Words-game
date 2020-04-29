@@ -37,7 +37,7 @@ public class Alphabet {
     }
 
     private int findRandomIndex() {
-        int low = 1, high = 26;
+        int low = 0, high = 25;
         int randomIndex;
 
         Random rnd = new Random();

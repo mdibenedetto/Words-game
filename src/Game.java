@@ -9,8 +9,22 @@ public class Game {
     public void play() {
         Logger.info("I am playing");
 
+        updateNumberOfLives(player1);
         player1.score = countDuplicatedVowels(player1.word);
+
+        updateNumberOfLives(player2);
         player2.score = countDuplicatedVowels(player2.word);
+    }
+
+    public boolean hasSkippedTurn(Player player) {
+        final String EXIT_CHAR = "-";
+        return player.word.equals(EXIT_CHAR);
+    }
+
+    private void updateNumberOfLives(Player player) {
+        if (hasSkippedTurn(player)) {
+            player.numberOfLives--;
+        }
     }
 
     private int countDuplicatedVowels(String word) {
@@ -57,5 +71,9 @@ public class Game {
         }
 
         return max;
+    }
+
+    public boolean isGameOver() {
+        return player1.numberOfLives == 0 || player2.numberOfLives == 0;
     }
 }
