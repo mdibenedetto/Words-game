@@ -1,15 +1,16 @@
 public class GameMessage {
-    private final String NEW_LINE = "\r\n";
     final String GAME_NAME = "Java Words Game";
     final String SEPARATOR =
         "----------------------------------------------------";
+    final String TITLE_LINE =
+        ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 
     private String newLine() {
-        return NEW_LINE;
+        return Logger.NEW_LINE;
     }
 
     private String newLine(String message) {
-        return NEW_LINE + message;
+        return Logger.NEW_LINE + message;
     }
 
     private String wrapMessage(String rawMessage) {
@@ -19,23 +20,32 @@ public class GameMessage {
         return message;
     }
 
+    private String centerMessage(String text, String textLine) {
+        int leftSpaces = (textLine.length() - text.length()) / 2;
+        String spaces = new String(new char[leftSpaces]).replace('\0', ' ');
+        return spaces + text;
+    }
+
     public void displayWelcome() {
-        Logger.message(wrapMessage("Welcome to " + GAME_NAME));
+        String message = TITLE_LINE;
+        String title = "Welcome to " + GAME_NAME;
+
+        message += newLine(centerMessage(title, TITLE_LINE));
+        message += newLine(TITLE_LINE);
+
+        Logger.message(message);
     }
 
     public void displayRules() {
         String message = "";
-        message += "Rule to award points";
-        message +=
-            newLine(
-                "The player receives the same amount " +
-                "of points as the number of duplicated vowels"
-            );
+        message += centerMessage("Rule to award points", SEPARATOR);
+        message += newLine(SEPARATOR);
+        message += newLine("The player receives the same amount of points");
+        message += newLine("as the number of duplicated vowels");
         message += newLine("EX:");
-        message += newLine();
-        message += newLine("“moon” – 2 points");
-        message += newLine("“cheerleader” – 4 points");
-        message += newLine("“answer” – 0 points");
+        message += newLine("\t“moon” – 2 points");
+        message += newLine("\t“cheerleader” – 4 points");
+        message += newLine("\t“answer” – 0 points");
         Logger.message(wrapMessage(message));
     }
 
@@ -49,18 +59,17 @@ public class GameMessage {
     public void promptWantStillPlay() {
         String message = "";
         message += newLine("Do you want to continue the game?");
+        message += newLine("Type 'yes' or choose an option:");
         message += newLine("a) YES - press 1");
         message += newLine("b) NO - press 2");
         message += newLine();
         Logger.prompt(message);
     }
 
-    public void displayPromptNextWord(String playerName, char nextLetter) {
-        String message =
-            playerName +
-            ": Please input a valid English word which start with the letter << " +
-            nextLetter +
-            " >>";
+    public void displayPromptNextWord(String playerName, String nextLetter) {
+        String message = playerName + ":";
+        message += newLine("Please input a valid English word ");
+        message += newLine("starting with letter << " + nextLetter + " >>");
         Logger.prompt(message);
     }
 

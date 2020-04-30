@@ -1,7 +1,7 @@
 import static java.lang.System.out;
 
 public class Logger {
-    private static final String NEW_LINE = "";
+    public static final String NEW_LINE = "\r\n";
 
     public static void message(String message) {
         out.println(message);
@@ -11,8 +11,10 @@ public class Logger {
         out.println("INFO: " + message);
     }
 
-    public static void prompt(String message) {
-        out.println(">>>>: " + message);
+    public static void prompt(String rawMessage) {
+        final String PREFIX = ">>>>: ";
+        String message = rawMessage.replaceAll(NEW_LINE, NEW_LINE + PREFIX);
+        out.println(PREFIX + message);
     }
 
     public static void error(String message) {

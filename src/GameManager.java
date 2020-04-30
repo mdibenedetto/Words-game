@@ -48,16 +48,17 @@ public class GameManager {
     private void startGame() {
         boolean keepPlay = true;
 
-        player1 = new Player("player-1", MAX_LIVES);
-        player2 = new Player("player-2", MAX_LIVES);
+        player1 = new Player("PLAYER-1", MAX_LIVES);
+        player2 = new Player("PLAYER-2", MAX_LIVES);
         game = new Game(player1, player2);
 
         Player nextPlayer = player1;
         int matchCounter = 0;
+        String lastWord = "";
 
         while (keepPlay) {
-            readNextWordPlayer(nextPlayer);
-
+            readNextWordPlayer(nextPlayer, lastWord);
+            lastWord = nextPlayer.word;
             matchCounter++;
 
             if (nextPlayer.equals(player1)) {
@@ -78,29 +79,42 @@ public class GameManager {
         }
     }
 
-    private String readNextWordPlayer(Player player) {
+    private String readNextWordPlayer(Player player, String lastWord) {
         boolean isValid = false, isTurnSkipped = false;
         String word = "";
-        char nextLetter = alphabet.findRandomLetter();
+        String nextLetter;
+
+        if (lastWord.equals("") || lastWord.equals("-")) {
+            nextLetter = "" + alphabet.findRandomLetter();
+        } else {
+            nextLetter = lastWord.substring(lastWord.length() - 2);
+        }
 
         do {
             message.displayPromptNextWord(player.name, nextLetter);
-            word = sc.next();
 
+            word = sc.next();
+            player.setWord(word);
             isTurnSkipped = game.hasSkippedTurn(player);
+
             message.displayChosenWord(player.name, word, isTurnSkipped);
 
             if (isTurnSkipped) {
                 isValid = true;
             } else {
-                isValid = vocabulary.isValidWord(word);
+                isValid = isValidInput(word);
             }
         } while (!isValid);
 
-        player.setWord(word);
         Helper.delay();
 
         return word;
+    }
+
+    private boolean isValidInput(String word) {
+        if (word.length() > 2) return true; // least 3 letters
+        if (vocabulary.isValidWord(word)) return true;
+        return false;
     }
 
     private boolean wantStillPlay() {
