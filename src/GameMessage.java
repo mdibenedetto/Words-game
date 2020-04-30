@@ -59,15 +59,13 @@ public class GameMessage {
     public void promptWantStillPlay() {
         String message = "";
         message += newLine("Do you want to continue the game?");
-        message += newLine("Type 'yes' or choose an option:");
-        message += newLine("a) YES - press 1");
-        message += newLine("b) NO - press 2");
+        message += newLine("'(y)es' to continue or any other letter to end.");
         message += newLine();
         Logger.prompt(message);
     }
 
-    public void displayPromptNextWord(String playerName, String nextLetter) {
-        String message = playerName + ":";
+    public void displayPromptNextWord(Player player, String nextLetter) {
+        String message = player.name + "(" + player.numberOfLives + "):";
         message += newLine("Please input a valid English word ");
         message += newLine("starting with letter << " + nextLetter + " >>");
         Logger.prompt(message);
@@ -131,5 +129,15 @@ public class GameMessage {
         message += newLine();
 
         Logger.warn(message);
+    }
+
+    public void displayGreetings() {
+        String message = TITLE_LINE;
+        String title = "Thaks to have played with " + GAME_NAME;
+
+        message += newLine(centerMessage(title, TITLE_LINE));
+        message += newLine(TITLE_LINE);
+
+        Logger.message(message);
     }
 }

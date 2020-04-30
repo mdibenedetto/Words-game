@@ -44,6 +44,8 @@ public class GameManager {
             message.displayEndGameSummary(gameCounter, player1, player2);
             keepPlay = wantStillPlay();
         }
+
+        message.displayGreetings();
     }
 
     private void loadNewGame() {
@@ -89,7 +91,7 @@ public class GameManager {
         }
 
         do {
-            message.displayPromptNextWord(player.name, nextLetter);
+            message.displayPromptNextWord(player, nextLetter);
 
             word = sc.next();
             player.setWord(word);
@@ -122,23 +124,26 @@ public class GameManager {
 
     private boolean wantStillPlay() {
         boolean stillPlay = false;
-        int userResponse = 0;
+        boolean isValidAnswer = false;
+        String userResponse;
+
         do {
             message.promptWantStillPlay();
 
-            if (sc.hasNextInt()) {
-                userResponse = sc.nextInt();
+            if (sc.hasNext()) {
+                userResponse = sc.next().toLowerCase();
 
-                if (userResponse == 1) {
+                if (userResponse.equals("yes") || userResponse.equals("y")) {
                     stillPlay = true;
-                } else if (userResponse == 2) {
+                } else {
                     stillPlay = false;
                 }
+
+                isValidAnswer = true;
             } else {
-                // keep going getting the next token (next user input)
                 sc.next();
             }
-        } while (userResponse < 0 || userResponse > 2);
+        } while (!isValidAnswer);
 
         return stillPlay;
     }
