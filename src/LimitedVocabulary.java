@@ -41,6 +41,7 @@ public class LimitedVocabulary {
         "arrive",
         "art",
         "ask",
+        "attack",
         "atom",
         "baby",
         "back",

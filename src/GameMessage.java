@@ -65,7 +65,14 @@ public class GameMessage {
     }
 
     public void displayPromptNextWord(Player player, String nextLetter) {
-        String message = player.name + "(" + player.numberOfLives + "):";
+        String message =
+            player.name +
+            " (Lives: " +
+            player.numberOfLives +
+            ", Score:" +
+            player.score +
+            ")";
+        message += newLine();
         message += newLine("Please input a valid English word ");
         message += newLine("starting with letter << " + nextLetter + " >>");
         Logger.prompt(message);

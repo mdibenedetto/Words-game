@@ -30,7 +30,7 @@ public class GameManager {
      * @author  Michele Di Bendetto
      *
      */
-    public void start() {
+    public void startUp() {
         message.displayWelcome();
         message.displayRules();
 
@@ -58,11 +58,11 @@ public class GameManager {
         boolean isGameOver = false;
         Player nextPlayer = player1;
         int turnCounter = 0;
-        String lastWord = "";
+        String nextWord = "";
 
         while (!isGameOver) {
-            readNextWordPlayer(nextPlayer, lastWord);
-            lastWord = nextPlayer.getWord();
+            readNextWordPlayer(nextPlayer, nextWord);
+            nextWord = nextPlayer.getWord();
             turnCounter++;
 
             if (nextPlayer.equals(player1)) {
@@ -106,12 +106,12 @@ public class GameManager {
             }
 
             if (!isValid) {
-                Helper.delay();
+                // Helper.delay();
                 message.displayWordNotExist(word);
             }
         } while (!isValid);
 
-        Helper.delay();
+        // Helper.delay();
 
         return word;
     }
@@ -135,8 +135,6 @@ public class GameManager {
 
                 if (userResponse.equals("yes") || userResponse.equals("y")) {
                     stillPlay = true;
-                } else {
-                    stillPlay = false;
                 }
 
                 isValidAnswer = true;
