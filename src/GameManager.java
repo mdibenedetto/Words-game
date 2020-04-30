@@ -39,27 +39,29 @@ public class GameManager {
         while (keepPlay) {
             gameCounter++;
             message.displayMaxLives(MAX_LIVES);
+            loadNewGame();
             startGame();
             message.displayEndGameSummary(gameCounter, player1, player2);
             keepPlay = wantStillPlay();
         }
     }
 
-    private void startGame() {
-        boolean keepPlay = true;
-
+    private void loadNewGame() {
         player1 = new Player("PLAYER-1", MAX_LIVES);
         player2 = new Player("PLAYER-2", MAX_LIVES);
         game = new Game(player1, player2);
+    }
 
+    private void startGame() {
+        boolean isGameOver = false;
         Player nextPlayer = player1;
-        int matchCounter = 0;
+        int turnCounter = 0;
         String lastWord = "";
 
-        while (keepPlay) {
+        while (!isGameOver) {
             readNextWordPlayer(nextPlayer, lastWord);
-            lastWord = nextPlayer.word;
-            matchCounter++;
+            lastWord = nextPlayer.getWord();
+            turnCounter++;
 
             if (nextPlayer.equals(player1)) {
                 nextPlayer = player2;
@@ -67,14 +69,10 @@ public class GameManager {
                 nextPlayer = player1;
             }
 
-            if (matchCounter == 2) {
+            if (turnCounter == 2) {
                 game.play();
-
-                message.display("player1.score: " + player1.score);
-                message.display("player2.score: " + player2.score);
-                keepPlay = !game.isGameOver();
-
-                matchCounter = 0;
+                isGameOver = game.isGameOver();
+                turnCounter = 0;
             }
         }
     }
@@ -104,6 +102,11 @@ public class GameManager {
             } else {
                 isValid = isValidInput(word);
             }
+
+            if (!isValid) {
+                Helper.delay();
+                message.displayWordNotExist(word);
+            }
         } while (!isValid);
 
         Helper.delay();
@@ -112,9 +115,9 @@ public class GameManager {
     }
 
     private boolean isValidInput(String word) {
-        if (word.length() > 2) return true; // least 3 letters
-        if (vocabulary.isValidWord(word)) return true;
-        return false;
+        if (word.length() < 3) return false;
+        if (!vocabulary.isValidWord(word)) return false;
+        return true;
     }
 
     private boolean wantStillPlay() {

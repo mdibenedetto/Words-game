@@ -17,7 +17,7 @@ public class Logger {
         out.println(PREFIX + message);
     }
 
-    public static void error(String message) {
-        out.println("WARN: " + message + "!");
+    public static void warn(String message) {
+        out.println("WARN: " + message);
     }
 }

@@ -114,13 +114,22 @@ public class GameMessage {
             looser = player1;
         }
 
-        String message = "Game number " + gameCounter;
+        String message = "The Game N." + gameCounter + " is ended";
+        message += newLine();
         message += newLine("The winner is: " + winner.name);
         message += newLine("Total score  :" + winner.score);
         message += newLine();
-        message += newLine("The winner is: " + looser.name);
+        message += newLine("The looser is: " + looser.name);
         message += newLine("Total score  :" + looser.score);
         message += newLine();
-        Logger.info(message);
+        Logger.info(wrapMessage(message));
+    }
+
+    public void displayWordNotExist(String word) {
+        String message = "Sorry! The word '" + word + "' is not a valid.";
+        message += newLine("Try again or type '-' to skip this turn");
+        message += newLine();
+
+        Logger.warn(message);
     }
 }

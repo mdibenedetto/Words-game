@@ -7,25 +7,23 @@ public class Game {
     }
 
     public void play() {
-        Logger.info("I am playing");
+        // updateNumberOfLives(player1);
+        player1.score = countDuplicatedVowels(player1.getWord());
 
-        updateNumberOfLives(player1);
-        player1.score = countDuplicatedVowels(player1.word);
-
-        updateNumberOfLives(player2);
-        player2.score = countDuplicatedVowels(player2.word);
+        // updateNumberOfLives(player2);
+        player2.score = countDuplicatedVowels(player2.getWord());
     }
 
     public boolean hasSkippedTurn(Player player) {
         final String EXIT_CHAR = "-";
-        return player.word.equals(EXIT_CHAR);
+        return player.getWord().equals(EXIT_CHAR);
     }
 
-    private void updateNumberOfLives(Player player) {
-        if (hasSkippedTurn(player)) {
-            player.numberOfLives--;
-        }
-    }
+    // private void updateNumberOfLives(Player player) {
+    //     if (hasSkippedTurn(player)) {
+    //         player.numberOfLives--;
+    //     }
+    // }
 
     private int countDuplicatedVowels(String word) {
         int aCounter = 0;
