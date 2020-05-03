@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+/**
+ * This class is one the core component of the game.
+ * It act as orchestrator between all class components of the application.
+ * It is in charge to collect the input of the user, validate it, and show the output.
+ */
 public class GameManager {
     private final int MAX_LIVES = 3;
     private Scanner sc = null;
@@ -7,28 +12,23 @@ public class GameManager {
     private Player player1, player2;
     private Alphabet alphabet;
     private Game game;
-    LimitedVocabulary vocabulary;
 
     /**
-     * This constructor set all instances:
-     * - 'sc' to use class Scanner to collect input from the User
-     * - message to show information
-     *
- 
-     *
+     * This constructor set all instances variabled
+     * used in more then once into the class methodsß
      */
     public GameManager() {
         sc = new Scanner(System.in);
         message = new GameMessage();
-        vocabulary = new LimitedVocabulary();
         alphabet = new Alphabet();
     }
 
     /**
-     * This method manages all life cycle of the game
-     *
-     * @author  Michele Di Bendetto
-     *
+     * This method manages all life cycle of the game.
+     * Show a welcome message.
+     * Show the rule of the games and max lives  for player
+     * keep playing as much as the user wants
+     * display a summary of the winner at the end of every game
      */
     public void startUp() {
         message.displayWelcome();
@@ -48,12 +48,27 @@ public class GameManager {
         message.displayGreetings();
     }
 
+    /**
+     * This method:
+     * - set the players and their attribute
+     * - set the game object used to manage all game processing
+     * Also, this method comes handy when it starts a new game,
+     * since all instances get recreated than resetted
+     */
     private void loadNewGame() {
         player1 = new Player("PLAYER-1", MAX_LIVES);
         player2 = new Player("PLAYER-2", MAX_LIVES);
         game = new Game(player1, player2);
     }
 
+    /**
+     * This method handle the life cycle of a game and its rounds.
+     * it plays a core role
+     * -  handle the turn over between players
+     * -  read the input
+     * -  validate the input
+     * -  alert the player in case of issues
+     */
     private void startGame() {
         boolean isGameOver = false;
         Player nextPlayer = player1;
@@ -79,6 +94,10 @@ public class GameManager {
         }
     }
 
+    /**
+     * This method collect the player input,
+     * and applies the validation rules
+     */
     private String readNextWordPlayer(Player player, String lastWord) {
         boolean isValid = false, isTurnSkipped = false;
         String word = "";
@@ -91,37 +110,32 @@ public class GameManager {
         }
 
         do {
-            message.displayPromptNextWord(player, nextLetter);
+            message.promptNextWord(player, nextLetter);
 
             word = sc.next();
             player.setWord(word);
-            isTurnSkipped = game.hasSkippedTurn(player);
+            isTurnSkipped = game.isTurnSkipped(player);
 
             message.displayChosenWord(player.name, word, isTurnSkipped);
 
             if (isTurnSkipped) {
                 isValid = true;
             } else {
-                isValid = isValidInput(word);
+                isValid = game.isValidWord(word);
             }
 
             if (!isValid) {
-                // Helper.delay();
-                message.displayWordNotExist(word);
+                message.warnNotExistWord(word);
             }
         } while (!isValid);
-
-        // Helper.delay();
 
         return word;
     }
 
-    private boolean isValidInput(String word) {
-        if (word.length() < 3) return false;
-        if (!vocabulary.isValidWord(word)) return false;
-        return true;
-    }
-
+    /**
+     * This method handles the user wish to play another game
+     * The user can type either "yes" or "y", case insensitive
+     */
     private boolean wantStillPlay() {
         boolean stillPlay = false;
         boolean isValidAnswer = false;

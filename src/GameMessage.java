@@ -1,3 +1,7 @@
+/**
+ * This class handle all messages needed of the application,
+ * such welcoming, alerting, or to display a simple output *
+ */
 public class GameMessage {
     final String GAME_NAME = "Java Words Game";
     final String SEPARATOR =
@@ -64,7 +68,7 @@ public class GameMessage {
         Logger.prompt(message);
     }
 
-    public void displayPromptNextWord(Player player, String nextLetter) {
+    public void promptNextWord(Player player, String nextLetter) {
         String message =
             player.name +
             " (Lives: " +
@@ -130,7 +134,7 @@ public class GameMessage {
         Logger.info(wrapMessage(message));
     }
 
-    public void displayWordNotExist(String word) {
+    public void warnNotExistWord(String word) {
         String message = "Sorry! The word '" + word + "' is not a valid.";
         message += newLine("Try again or type '-' to skip this turn");
         message += newLine();

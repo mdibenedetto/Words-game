@@ -1036,6 +1036,10 @@ public class LimitedVocabulary {
         "zoologist"
     }; // here ends the 1D array of words
 
+    /**
+     * This check is the word typed by player
+     * is part of the limited vocabulary array "words"
+     */
     public boolean isValidWord(String word) {
         boolean isValid = false;
 

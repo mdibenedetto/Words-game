@@ -1,5 +1,9 @@
 import static java.lang.System.out;
 
+/**
+ * This class is a helper class to show generic message.
+ * It works strictly close to the class GameMessage
+ */
 public class Logger {
     public static final String NEW_LINE = "\r\n";
 
