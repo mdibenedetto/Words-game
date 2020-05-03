@@ -3,8 +3,8 @@
  * It is in charge to process the input of the user
  */
 public class Game {
-    LimitedVocabulary vocabulary;
-    Player player1, player2;
+    private LimitedVocabulary vocabulary;
+    private Player player1, player2;
 
     public Game(Player player1, Player player2) {
         this.player1 = player1;

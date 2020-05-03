@@ -3,10 +3,10 @@
  * such welcoming, alerting, or to display a simple output *
  */
 public class GameMessage {
-    final String GAME_NAME = "Java Words Game";
-    final String SEPARATOR =
+    private final String GAME_NAME = "Java Words Game";
+    private final String SEPARATOR =
         "----------------------------------------------------";
-    final String TITLE_LINE =
+    private final String TITLE_LINE =
         ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 
     private String newLine() {
@@ -17,6 +17,9 @@ public class GameMessage {
         return Logger.NEW_LINE + message;
     }
 
+    /**
+     * This method wraps a string into 2 lead line SEPARATOR
+     */
     private String wrapMessage(String rawMessage) {
         String message = SEPARATOR;
         message += newLine(rawMessage);
@@ -24,12 +27,20 @@ public class GameMessage {
         return message;
     }
 
+    /**
+     * This method center a string into the console message,
+     * calculate the distance based on the constants TITLE_LINE
+     * or SEPARATOR
+     */
     private String centerMessage(String text, String textLine) {
         int leftSpaces = (textLine.length() - text.length()) / 2;
         String spaces = new String(new char[leftSpaces]).replace('\0', ' ');
         return spaces + text;
     }
 
+    /**
+     * This method display a welcome message
+     */
     public void displayWelcome() {
         String message = TITLE_LINE;
         String title = "Welcome to " + GAME_NAME;
@@ -40,6 +51,9 @@ public class GameMessage {
         Logger.message(message);
     }
 
+    /**
+     * This method display all the rules to play the game and make a score
+     */
     public void displayRules() {
         String message = "";
         message += centerMessage("Rule to award points", SEPARATOR);
@@ -53,6 +67,9 @@ public class GameMessage {
         Logger.message(wrapMessage(message));
     }
 
+    /**
+     * This method display how many lives a player has
+     */
     public void displayMaxLives(int maxLives) {
         String message = "";
         message += ("A new game is started");
@@ -60,6 +77,9 @@ public class GameMessage {
         Logger.message(wrapMessage(message));
     }
 
+    /**
+     * This method prompt a player if  want to play another game
+     */
     public void promptWantStillPlay() {
         String message = "";
         message += newLine("Do you want to continue the game?");
@@ -68,6 +88,9 @@ public class GameMessage {
         Logger.prompt(message);
     }
 
+    /**
+     * This method promp a player to input a  word to play the game
+     */
     public void promptNextWord(Player player, String nextLetter) {
         String message =
             player.name +
@@ -82,6 +105,9 @@ public class GameMessage {
         Logger.prompt(message);
     }
 
+    /**
+     * This method display which word the player has input
+     */
     public void displayChosenWord(
         String playerName,
         String word,
@@ -99,15 +125,10 @@ public class GameMessage {
         Logger.info(message);
     }
 
-    public void displayPromptFirstWord() {
-        String message = "Please input the FIRST word";
-        Logger.prompt(message);
-    }
-
-    public void display(String message) {
-        Logger.info(message);
-    }
-
+    /**
+     * This method display a summary of at the end of the game,
+     * who is the winner and  the score
+     */
     public void displayEndGameSummary(
         int gameCounter,
         Player player1,
@@ -134,6 +155,10 @@ public class GameMessage {
         Logger.info(wrapMessage(message));
     }
 
+    /**
+     * This method alert the player that the word inputed
+     * is not part of the English vacabulary of the  game
+     */
     public void warnNotExistWord(String word) {
         String message = "Sorry! The word '" + word + "' is not a valid.";
         message += newLine("Try again or type '-' to skip this turn");
@@ -142,6 +167,9 @@ public class GameMessage {
         Logger.warn(message);
     }
 
+    /**
+     * This method display the end greeting when the game ends
+     */
     public void displayGreetings() {
         String message = TITLE_LINE;
         String title = "Thaks to have played with " + GAME_NAME;
