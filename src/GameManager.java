@@ -14,8 +14,8 @@ public class GameManager {
     private Game game;
 
     /**
-     * This constructor set all instances variabled
-     * used in more then once into the class methodsß
+     * This constructor sets all instances variables
+     * needed to handle the life cycle of the game
      */
     public GameManager() {
         sc = new Scanner(System.in);
@@ -24,11 +24,11 @@ public class GameManager {
     }
 
     /**
-     * This method manages all life cycle of the game.
-     * Show a welcome message.
-     * Show the rule of the games and max lives  for player
-     * keep playing as much as the user wants
-     * display a summary of the winner at the end of every game
+     * This method handles all life cycle of the game.
+     * - Shows a welcome message.
+     * - Shows the rule of the games and max lives player has got
+     * - keeps playing as much as the user wants
+     * - displays a summary of the winner at the end of every game
      */
     public void startUp() {
         message.displayWelcome();
@@ -50,10 +50,12 @@ public class GameManager {
 
     /**
      * This method:
-     * - set the players and their attribute
-     * - set the game object used to manage all game processing
-     * Also, this method comes handy when it starts a new game,
-     * since all instances get recreated than resetted
+     * - sets the players and their attribute
+     * - sets the game object used to handle all game processing
+     *
+     * Considering that no history is required,
+     * this method comes handy when it starts a new game,
+     * since all instances get recreated than resetted.
      */
     private void loadNewGame() {
         player1 = new Player("PLAYER-1", MAX_LIVES);
@@ -62,30 +64,31 @@ public class GameManager {
     }
 
     /**
-     * This method handle the life cycle of a game and its rounds.
+     * This method handles the life cycle of a game and its rounds.
      * it plays a core role
-     * -  handle the turn over between players
-     * -  read the input
-     * -  validate the input
-     * -  alert the player in case of issues
+     * -  handles the turn over between players
+     * -  reads the input
+     * -  validates the input
+     * -  alerts the player in case of issues
      */
     private void startGame() {
         boolean isGameOver = false;
         Player nextPlayer = player1;
         int turnCounter = 0;
         String nextWord = "";
-
+        // play so far is not Game Over
         while (!isGameOver) {
             readNextWordPlayer(nextPlayer, nextWord);
             nextWord = nextPlayer.getWord();
             turnCounter++;
-
+            // here we handle the turn over
             if (nextPlayer.equals(player1)) {
                 nextPlayer = player2;
             } else {
                 nextPlayer = player1;
             }
-
+            // The turnCounter indicates when both player
+            // made their choice, so the round can be played
             if (turnCounter == 2) {
                 game.play();
                 isGameOver = game.isGameOver();
@@ -102,13 +105,16 @@ public class GameManager {
         boolean isValid = false, isTurnSkipped = false;
         String word = "";
         String nextLetter;
-
+        // Get a random letter, at the begenning of the game ("")
+        // or if the previous round was skipped ("-")
+        // otherwise, as per game rule,requires a word which starts
+        // with the last 2 letters of the previous word typed
         if (lastWord.equals("") || lastWord.equals("-")) {
             nextLetter = "" + alphabet.findRandomLetter();
         } else {
             nextLetter = lastWord.substring(lastWord.length() - 2);
         }
-
+        // collect the input. Loop untill the input is valid or a turn is skipped
         do {
             message.promptNextWord(player, nextLetter);
 

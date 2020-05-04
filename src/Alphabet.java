@@ -1,7 +1,7 @@
 import java.util.Random;
 
 /**
- * This class handle the entire English Alphabet
+ * This class handles the entire English Alphabet
  */
 public class Alphabet {
     char[] letters = {
@@ -34,7 +34,7 @@ public class Alphabet {
     };
 
     /**
-     * This method return a random letter to be used to play the game
+     * This method returns a random letter to be used to play the game
      */
     public char findRandomLetter() {
         int index = findRandomIndex();

@@ -1,7 +1,12 @@
 import static java.lang.System.out;
 
 /**
- * This class is a helper class to show generic message.
+ * This class is a helper class to show message prefixed by
+ * a string which indicates the type of message.
+ * such as:
+ * - "INFO: ": indicates information
+ * - ">>>>: ": prompt the user to input something
+ * - "WARN: ": indicates warning about something
  * It works strictly close to the class GameMessage
  */
 public class Logger {

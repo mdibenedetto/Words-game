@@ -1,6 +1,9 @@
 /**
- * This class handle all messages needed of the application,
- * such welcoming, alerting, or to display a simple output *
+ * This class handles all messages needed of the application,
+ * such us:
+ * - welcome the players
+ * - alert
+ * - display a simple output
  */
 public class GameMessage {
     private final String GAME_NAME = "Java Words Game";
@@ -9,10 +12,16 @@ public class GameMessage {
     private final String TITLE_LINE =
         ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 
+    /**
+     * This method creates an empty new line
+     */
     private String newLine() {
         return Logger.NEW_LINE;
     }
 
+    /**
+     * This method prefixes a message with a new line
+     */
     private String newLine(String message) {
         return Logger.NEW_LINE + message;
     }
@@ -28,9 +37,9 @@ public class GameMessage {
     }
 
     /**
-     * This method center a string into the console message,
-     * calculate the distance based on the constants TITLE_LINE
-     * or SEPARATOR
+     * This method centers a string into the console message,
+     * calculates the distance based on the constants TITLE_LINE
+     * or SEPARATOR which are sent through the param "textLine"
      */
     private String centerMessage(String text, String textLine) {
         int leftSpaces = (textLine.length() - text.length()) / 2;
@@ -39,7 +48,7 @@ public class GameMessage {
     }
 
     /**
-     * This method display a welcome message
+     * This method displays a welcome message
      */
     public void displayWelcome() {
         String message = TITLE_LINE;
@@ -52,7 +61,7 @@ public class GameMessage {
     }
 
     /**
-     * This method display all the rules to play the game and make a score
+     * This method displays all the rules to play the game and make the score
      */
     public void displayRules() {
         String message = "";
@@ -68,7 +77,7 @@ public class GameMessage {
     }
 
     /**
-     * This method display how many lives a player has
+     * This method displays how many lives a player has got
      */
     public void displayMaxLives(int maxLives) {
         String message = "";
@@ -78,7 +87,7 @@ public class GameMessage {
     }
 
     /**
-     * This method prompt a player if  want to play another game
+     * This method prompts a player if want to play another game
      */
     public void promptWantStillPlay() {
         String message = "";
@@ -89,7 +98,7 @@ public class GameMessage {
     }
 
     /**
-     * This method promp a player to input a  word to play the game
+     * This method prompts a player to input a word to play the game
      */
     public void promptNextWord(Player player, String nextLetter) {
         String message =
@@ -106,7 +115,7 @@ public class GameMessage {
     }
 
     /**
-     * This method display which word the player has input
+     * This method displays which word the player has typed
      */
     public void displayChosenWord(
         String playerName,
@@ -126,8 +135,9 @@ public class GameMessage {
     }
 
     /**
-     * This method display a summary of at the end of the game,
-     * who is the winner and  the score
+     * This method displays a summary of at the end of the game,
+     * who is the winner and the score.
+     * The winner is whoever has more lives left
      */
     public void displayEndGameSummary(
         int gameCounter,
@@ -156,7 +166,7 @@ public class GameMessage {
     }
 
     /**
-     * This method alert the player that the word inputed
+     * This method alerts the player that the word typed
      * is not part of the English vacabulary of the  game
      */
     public void warnNotExistWord(String word) {
@@ -168,11 +178,11 @@ public class GameMessage {
     }
 
     /**
-     * This method display the end greeting when the game ends
+     * This method displays the end greeting whenthe game ends
      */
     public void displayGreetings() {
         String message = TITLE_LINE;
-        String title = "Thaks to have played with " + GAME_NAME;
+        String title = "Thanks to have played with " + GAME_NAME;
 
         message += newLine(centerMessage(title, TITLE_LINE));
         message += newLine(TITLE_LINE);

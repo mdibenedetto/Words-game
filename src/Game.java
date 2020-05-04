@@ -71,8 +71,8 @@ public class Game {
     }
 
     /**
-     * This method check if any player has run out all lives provide
-     * return a boolean to indicate is the game is over
+     * This method check if any of the player has run out all lives provided,
+     * return a boolean to indicate if the game is over
      */
     public boolean isGameOver() {
         return player1.numberOfLives == 0 || player2.numberOfLives == 0;

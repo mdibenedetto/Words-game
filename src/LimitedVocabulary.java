@@ -1037,8 +1037,9 @@ public class LimitedVocabulary {
     }; // here ends the 1D array of words
 
     /**
-     * This check is the word typed by player
-     * is part of the limited vocabulary array "words"
+     * This method checks if the word typed by player
+     * is part of the limited vocabulary array "words".
+     * The check is case insensitive
      */
     public boolean isValidWord(String word) {
         boolean isValid = false;

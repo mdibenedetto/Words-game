@@ -1,4 +1,4 @@
-// Main class which contains the Application entry point
+// Main class which contains the Application entry point main()
 public class GameApp {
 
     public static void main(String args[]) {
