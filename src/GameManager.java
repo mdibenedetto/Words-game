@@ -1,9 +1,10 @@
 import java.util.Scanner;
 
 /**
- * This class is one the core component of the game.
- * It act as orchestrator between all class components of the application.
- * It is in charge to collect the input of the user, validate it, and show the output.
+ * This class the core component of the game.
+ * It acts as orchestrator between all classes of the application.
+ * It is in charge to collect the input of the user,
+ * to validate it, to process the input, and show the output.
  */
 public class GameManager {
     private final int MAX_LIVES = 3;
@@ -65,11 +66,12 @@ public class GameManager {
 
     /**
      * This method handles the life cycle of a game and its rounds.
-     * it plays a core role
-     * -  handles the turn over between players
-     * -  reads the input
-     * -  validates the input
-     * -  alerts the player in case of issues
+     * it plays a core role which also includes:
+     * - It handles the life cycle of a game and its rounds; it takes care of  the turn over between players;
+     * - It reads the input of the player;
+     * - It computes the input
+     * - It displays a round summary after every round;
+     * - It keeps running until one of the user runs out all lives
      */
     private void startGame() {
         boolean isGameOver = false;
@@ -101,8 +103,7 @@ public class GameManager {
     }
 
     /**
-     * This method collect the player input,
-     * and applies the validation rules
+     * This method handles the player input and it applies the validation rules
      */
     private String readNextWordPlayer(Player player, String lastWord) {
         boolean isValid = false, isTurnSkipped = false;
