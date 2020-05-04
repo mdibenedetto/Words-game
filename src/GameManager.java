@@ -75,6 +75,7 @@ public class GameManager {
         boolean isGameOver = false;
         Player nextPlayer = player1;
         int turnCounter = 0;
+        int roundCounter = 0;
         String nextWord = "";
         // play so far is not Game Over
         while (!isGameOver) {
@@ -90,8 +91,10 @@ public class GameManager {
             // The turnCounter indicates when both player
             // made their choice, so the round can be played
             if (turnCounter == 2) {
+                roundCounter++;
                 game.play();
                 isGameOver = game.isGameOver();
+                message.displayRoundSummary(player1, player2, roundCounter);
                 turnCounter = 0;
             }
         }

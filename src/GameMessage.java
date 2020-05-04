@@ -81,8 +81,14 @@ public class GameMessage {
      */
     public void displayMaxLives(int maxLives) {
         String message = "";
-        message += ("A new game is started");
-        message += newLine("You have a total of " + maxLives + " lives");
+        message += centerMessage("A new game is started", SEPARATOR);
+        message +=
+            newLine(
+                centerMessage(
+                    "You have a total of " + maxLives + " lives",
+                    SEPARATOR
+                )
+            );
         Logger.message(wrapMessage(message));
     }
 
@@ -101,13 +107,7 @@ public class GameMessage {
      * This method prompts a player to input a word to play the game
      */
     public void promptNextWord(Player player, String nextLetter) {
-        String message =
-            player.name +
-            " (Lives: " +
-            player.numberOfLives +
-            ", Score:" +
-            player.score +
-            ")";
+        String message = makePlayerRoundSummary(player);
         message += newLine();
         message += newLine("Please input a valid English word ");
         message += newLine("starting with letter << " + nextLetter + " >>");
@@ -155,14 +155,23 @@ public class GameMessage {
         }
 
         String message = "The Game N." + gameCounter + " is ended";
+        message += newLine(SEPARATOR);
+        message += makePlayerGameSummary(winner, "winner");
         message += newLine();
-        message += newLine("The winner is: " + winner.name);
-        message += newLine("Total score  :" + winner.score);
-        message += newLine();
-        message += newLine("The looser is: " + looser.name);
-        message += newLine("Total score  :" + looser.score);
-        message += newLine();
-        Logger.info(wrapMessage(message));
+        message += makePlayerGameSummary(looser, "looser");
+        Logger.message(wrapMessage(message));
+    }
+
+    /**
+     * This method create a string with a summary of the player
+     * status after the game ended
+     */
+    private String makePlayerGameSummary(Player player, String title) {
+        String message = "";
+        message += newLine("The " + title + " is: " + player.name);
+        message += newLine("Total score  : " + player.score + " points");
+        message += newLine("Lives left   : " + player.numberOfLives);
+        return message;
     }
 
     /**
@@ -188,5 +197,36 @@ public class GameMessage {
         message += newLine(TITLE_LINE);
 
         Logger.message(message);
+    }
+
+    /**
+     * This method displays a summary of the players
+     * status after a round ended
+     */
+    public void displayRoundSummary(
+        Player player1,
+        Player player2,
+        int roundCounter
+    ) {
+        String message = "Summary - Round N." + roundCounter;
+        message += newLine(SEPARATOR);
+        message += newLine(makePlayerRoundSummary(player1));
+        message += newLine(makePlayerRoundSummary(player2));
+        Logger.message(wrapMessage(message));
+    }
+
+    /**
+     * This method create a string with a summary of the player
+     * status after a round ended
+     */
+    private String makePlayerRoundSummary(Player player) {
+        String message =
+            player.name +
+            " (Lives: " +
+            player.numberOfLives +
+            ", Score:" +
+            player.score +
+            ")";
+        return message;
     }
 }

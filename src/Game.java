@@ -16,13 +16,19 @@ public class Game {
      * This method compute and assign the user score
      */
     public void play() {
-        player1.score = countDuplicatedVowels(player1.getWord());
-        player2.score = countDuplicatedVowels(player2.getWord());
+        player1.score += countDuplicatedVowels(player1.getWord());
+        player2.score += countDuplicatedVowels(player2.getWord());
     }
 
     /**
      * This method  calcualte how many points the user gets
-     * based on the rule the double vowels
+     *
+     * based on the rule R4 - double vowels:
+     * The player receives the same amount of points
+     * as the number of duplicated vowels in the word
+     * “moon” – 2 points
+     * “cheerleader” – 4 points
+     *  “answer” – 0 points
      */
     private int countDuplicatedVowels(String word) {
         int aCounter = 0;
@@ -63,11 +69,11 @@ public class Game {
 
         int max = 0;
         for (int i = 0; i < 5; i++) {
-            int current = vowelsCounter[0];
+            int current = vowelsCounter[i];
             max = Math.max(max, current);
         }
 
-        return max;
+        return max > 1 ? max : 0;
     }
 
     /**
