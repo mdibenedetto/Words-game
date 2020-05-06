@@ -31,9 +31,11 @@ public class Logger {
         out.println(PREFIX + message);
     }
 
-    public static void warn(String message) {
+    public static void warn(String rawMessage) {
         Helper.delay();
 
-        out.println("WARN: " + message);
+        final String PREFIX = "WARN: ";
+        String message = rawMessage.replaceAll(NEW_LINE, (NEW_LINE + PREFIX));
+        out.println(PREFIX + message);
     }
 }

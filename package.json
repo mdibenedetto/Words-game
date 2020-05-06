@@ -9,6 +9,9 @@
 	"scripts": {
 		"test": "echo \"Warning: no test specified\" && exit 0",
 		"pretty": "prettier --write \"./**/*.java\"",
+		"make-bin": "mkdir ./bin",
+		"prejava-compile": "npm run make-bin",
+		"prejava-run": "npm run make-bin",
 		"java-clean": "rm -f ./src/*.class",
 		"java-compile": "javac ./src/*.java -d ./bin",
 		"java-run": "cd ./bin && clear && java GameApp",

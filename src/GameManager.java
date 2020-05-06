@@ -106,7 +106,7 @@ public class GameManager {
      * This method handles the player input and it applies the validation rules
      */
     private String readNextWordPlayer(Player player, String lastWord) {
-        boolean isValid = false, isTurnSkipped = false;
+        boolean isValidInput = false, isTurnSkipped = false;
         String word = "";
         String nextLetter;
         // Get a random letter, at the begenning of the game ("")
@@ -124,20 +124,22 @@ public class GameManager {
 
             word = sc.next();
             player.setWord(word);
-            isTurnSkipped = game.isTurnSkipped(player);
 
+            isTurnSkipped = game.isTurnSkipped(player);
             message.displayChosenWord(player.name, word, isTurnSkipped);
 
             if (isTurnSkipped) {
-                isValid = true;
+                isValidInput = true;
             } else {
-                isValid = game.isValidWord(word);
+                isValidInput = game.isValidWord(word);
             }
 
-            if (!isValid) {
+            if (!isValidInput) {
                 message.warnNotExistWord(word);
+            } else {
+                message.infoWellDone();
             }
-        } while (!isValid);
+        } while (!isValidInput);
 
         return word;
     }

@@ -135,6 +135,15 @@ public class GameMessage {
     }
 
     /**
+     * This method displays a well done message, used in case the word is correct
+     */
+    public void infoWellDone() {
+        String message = "Well done!";
+        message += newLine();
+        Logger.info(message);
+    }
+
+    /**
      * This method displays a summary of at the end of the game,
      * who is the winner and the score.
      * The winner is whoever has more lives left
@@ -181,9 +190,9 @@ public class GameMessage {
     public void warnNotExistWord(String word) {
         String message = "Sorry! The word '" + word + "' is not a valid.";
         message += newLine("Try again or type '-' to skip this turn");
-        message += newLine();
 
         Logger.warn(message);
+        Logger.message("");
     }
 
     /**
