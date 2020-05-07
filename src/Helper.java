@@ -13,7 +13,7 @@ public class Helper {
      */
     public static void delay() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(400);
         } catch (InterruptedException e) {
             System.out.println(e.getStackTrace());
         }

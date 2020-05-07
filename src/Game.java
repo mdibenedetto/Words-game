@@ -36,7 +36,7 @@ public class Game {
         int iCounter = 0;
         int oCounter = 0;
         int uCounter = 0;
-
+        // counts how many times a vowel appears into the word
         for (int i = 0, len = word.length(); i < len; i++) {
             char letter = word.charAt(i);
 
@@ -58,7 +58,7 @@ public class Game {
                     break;
             }
         }
-
+        // create a temporary array which contains all counter variables
         int[] vowelsCounter = {
             aCounter,
             eCounter,
@@ -66,13 +66,15 @@ public class Game {
             oCounter,
             uCounter
         };
-
+        // Find the vowel which has more occurrences into the word
         int max = 0;
         for (int i = 0; i < 5; i++) {
             int current = vowelsCounter[i];
             max = Math.max(max, current);
         }
-
+        // if the vowel has more then 1 ooccurrence,
+        // it means it is duplicated then return the value,
+        // otherwise returns 0
         return max > 1 ? max : 0;
     }
 

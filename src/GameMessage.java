@@ -125,13 +125,11 @@ public class GameMessage {
         String message = playerName;
         message += ": Your choosen word is << " + word + " >>";
         if (isTurnSkipped) {
-            message +=
-                newLine(
-                    "You decided to skip this round. You will loose one life."
-                );
+            message += newLine("You decided to skip this round.");
+            message += newLine("You will loose one life.");
         }
-        message += newLine();
         Logger.info(message);
+        Logger.message("");
     }
 
     /**
@@ -139,8 +137,8 @@ public class GameMessage {
      */
     public void infoWellDone() {
         String message = "Well done!";
-        message += newLine();
         Logger.info(message);
+        Logger.message("");
     }
 
     /**

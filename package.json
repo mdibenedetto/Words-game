@@ -9,13 +9,13 @@
 	"scripts": {
 		"test": "echo \"Warning: no test specified\" && exit 0",
 		"pretty": "prettier --write \"./**/*.java\"",
-		"make-bin": "mkdir ./bin",
+		"make-bin": "mkdir -p ./bin",
 		"prejava-compile": "npm run make-bin",
-		"prejava-run": "npm run make-bin",
 		"java-clean": "rm -f ./src/*.class",
 		"java-compile": "javac ./src/*.java -d ./bin",
 		"java-run": "cd ./bin && clear && java GameApp",
-		"java-dev": "npm run java-compile && npm run java-run"
+		"java-dev": "npm run java-compile && npm run java-run",
+		"open-report": "open /Applications/Microsoft\\ Word.app ./docs/report.docx"
 	},
 	"prettier": {
 		"tabWidth": 4

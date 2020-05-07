@@ -121,25 +121,24 @@ public class GameManager {
         // collect the input. Loop untill the input is valid or a turn is skipped
         do {
             message.promptNextWord(player, nextLetter);
-
+            // read user input and set into player
             word = sc.next();
             player.setWord(word);
-
+            // check if the player wants to skip this turn
             isTurnSkipped = game.isTurnSkipped(player);
             message.displayChosenWord(player.name, word, isTurnSkipped);
 
-            if (isTurnSkipped) {
-                isValidInput = true;
-            } else {
+            if (!isTurnSkipped) {
+                // a valid input is either a word into the limited vocabulary
                 isValidInput = game.isValidWord(word);
+                // notify the user if the input is valid or not
+                if (isValidInput) {
+                    message.infoWellDone();
+                } else {
+                    message.warnNotExistWord(word);
+                }
             }
-
-            if (!isValidInput) {
-                message.warnNotExistWord(word);
-            } else {
-                message.infoWellDone();
-            }
-        } while (!isValidInput);
+        } while (!isValidInput && !isTurnSkipped);
 
         return word;
     }
@@ -158,7 +157,8 @@ public class GameManager {
 
             if (sc.hasNext()) {
                 userResponse = sc.next().toLowerCase();
-
+                // the player can keep playing by typing either "yes" or "y"
+                // any other word/letter will e considered a negative answer
                 if (userResponse.equals("yes") || userResponse.equals("y")) {
                     stillPlay = true;
                 }
