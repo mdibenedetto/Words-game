@@ -15,7 +15,8 @@
 		"java-compile": "javac ./src/*.java -d ./bin",
 		"java-run": "cd ./bin && clear && java GameApp",
 		"java-dev": "npm run java-compile && npm run java-run",
-		"open-report": "open /Applications/Microsoft\\ Word.app ./docs/report.docx"
+		"open-report": "open /Applications/Microsoft\\ Word.app ./docs/report.docx",
+		"zip": "sh ./zip-package.sh"
 	},
 	"prettier": {
 		"tabWidth": 4

@@ -84,18 +84,21 @@ public class GameManager {
             readNextWordPlayer(nextPlayer, nextWord);
             nextWord = nextPlayer.getWord();
             turnCounter++;
-            // here we handle the turn over
+
+            // this block it handles the turn over
             if (nextPlayer.equals(player1)) {
                 nextPlayer = player2;
             } else {
                 nextPlayer = player1;
             }
+            // isGameOver end the current game session
+            isGameOver = game.isGameOver();
             // The turnCounter indicates when both player
             // made their choice, so the round can be played
-            if (turnCounter == 2) {
+            // the score can be computed
+            if (!isGameOver && turnCounter == 2) {
                 roundCounter++;
                 game.play();
-                isGameOver = game.isGameOver();
                 message.displayRoundSummary(player1, player2, roundCounter);
                 turnCounter = 0;
             }
