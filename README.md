@@ -1,4 +1,4 @@
-# NCI-SD-JAVA-Project-Morra-Game
+Morra Words Game
 
 ## Pre requiments
 
@@ -18,8 +18,10 @@ https://nodejs.org/en/download/
 UML CLASS DIAGRAM:
 ![UML CLASS DIAGRAM IMAGE](./docs/game-morra-diagram.jpg "UML CLASS DIAGRAM")
 
-UML CLASS DIAGRAM Source
+# References
+
+UML CLASS DIAGRAM Source (private)
 https://app.diagrams.net/#G1hGi_mB3urb6xhiiI58UyscUojuXGqrPB
-Í
+
 JAVA Docs format:
 https://www.tutorialspoint.com/java/java_documentation.htm
