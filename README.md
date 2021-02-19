@@ -5,7 +5,8 @@ Morra Words Game
 Install Java:
 https://www.oracle.com/java/technologies/javase-jdk13-downloads.html
 
-## [ OPTIONAL REQUIMENTS - only if you want to use NodeJS + NPM ]
+## Optional requiments
+### Only if you want to use NodeJS + NPM
 
 Install NodeJS:
 https://nodejs.org/en/download/
@@ -15,7 +16,8 @@ https://nodejs.org/en/download/
 -   `npm run java-run` it runs the class which contains the main() MorraGameApp
 -   `npm run java-dev` it combines `java-compile` and `java-compile` in one single
 
-UML CLASS DIAGRAM:
+## UML class diagram:
+
 ![UML CLASS DIAGRAM IMAGE](./docs/game-morra-diagram.jpg "UML CLASS DIAGRAM")
 
 # References
