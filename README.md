@@ -1,4 +1,4 @@
-Morra Words Game
+# Morra Words Game
 
 ## Pre requiments
 
