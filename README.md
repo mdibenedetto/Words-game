@@ -22,7 +22,7 @@ https://nodejs.org/en/download/
 
 ## UML class diagram:
 
-![UML Class diagramm image](./docs/app-diagram.jpg "UML Class diagramm")
+![UML Class diagramm image](./docs/app-diagram.png "UML Class diagramm")
 
 # References
 
