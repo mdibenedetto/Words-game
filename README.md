@@ -18,11 +18,11 @@ https://nodejs.org/en/download/
 
 ## Preview App
 
-![App Preview image](./docs/app-preview.png "App Preview"){{:height="70px" width="40px"}
+<img src="./docs/app-preview.png" width="500" alt = "App Preview">
 
 ## UML class diagram:
 
-![UML Class diagramm image](./docs/app-diagram.png "UML Class diagramm"){:height="50%" width="50%"}
+<img src="./docs/app-diagram.png" width="500" alt = "App Preview">
 
 # References
 
