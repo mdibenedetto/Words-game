@@ -18,16 +18,16 @@ https://nodejs.org/en/download/
 
 ## Preview App
 
-![App Preview image](./docs/app-preview.png "App Preview")
+![App Preview image](./docs/app-preview.png "App Preview"){{:height="70px" width="40px"}
 
 ## UML class diagram:
 
-![UML Class diagramm image](./docs/app-diagram.png "UML Class diagramm")
+![UML Class diagramm image](./docs/app-diagram.png "UML Class diagramm"){:height="50%" width="50%"}
 
 # References
 
-UML Class diagramm Source (private)
+## UML Class diagramm Source (private)
 https://app.diagrams.net/#G1hGi_mB3urb6xhiiI58UyscUojuXGqrPB
 
-JAVA Docs format:
+## JAVA Docs format:
 https://www.tutorialspoint.com/java/java_documentation.htm
