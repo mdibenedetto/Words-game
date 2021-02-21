@@ -1,4 +1,4 @@
-# Morra Words Game
+# Words Game
 
 ## Pre requiments
 
@@ -18,15 +18,15 @@ https://nodejs.org/en/download/
 
 ## Preview App
 
-![Preview image](./docs/app-preview.png "Preview image")
+![App Preview image](./docs/app-preview.png "App Preview")
 
 ## UML class diagram:
 
-![UML CLASS DIAGRAM IMAGE](./docs/game-morra-diagram.jpg "UML CLASS DIAGRAM")
+![UML Class diagramm image](./docs/app-diagram.jpg "UML Class diagramm")
 
 # References
 
-UML CLASS DIAGRAM Source (private)
+UML Class diagramm Source (private)
 https://app.diagrams.net/#G1hGi_mB3urb6xhiiI58UyscUojuXGqrPB
 
 JAVA Docs format:
